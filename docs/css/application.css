@@ -1,0 +1,11 @@
+.label__font_normal {
+  color: #888;
+}
+
+.label__font_correct {
+  color: #66f;
+}
+
+.label__font_incorrect {
+  color: #f66;
+}
