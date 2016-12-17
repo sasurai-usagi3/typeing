@@ -6,12 +6,15 @@ window.addEventListener("load", () => {
   str.split("").forEach(x => {
     let span = document.createElement("span");
     span.textContent = x;
-    span.className = "label__font_normal";
+    span.className = "label__font_normal label__font";
 
     label.appendChild(span);
   });
 
   window.addEventListener("keydown", e => {
+    let labelFont = document.getElementsByClassName("label__font");
+    let flag = true;
+
     if(e.key.length !== 1 && e.key !== "Backspace") {
       return;
     }
@@ -20,5 +23,24 @@ window.addEventListener("load", () => {
     } else {
       keyStack += e.key;
     }
+
+    if(keyStack.length !== labelFont.length) {
+      flag = false;
+    }
+    for(let i = 0; i < labelFont.length; ++i) {
+      if(keyStack[i] !== undefined) {
+        let judge = labelFont[i].textContent === keyStack[i];
+        flag = flag && judge;
+
+        if(judge) {
+          labelFont[i].className = "label__font_correct label__font";
+        } else {
+          labelFont[i].className = "label__font_incorrect label__font";
+        }
+      } else {
+        labelFont[i].className = "label__font_normal label__font";
+      }
+    }
+    console.log(flag);
   });
 });
