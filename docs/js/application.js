@@ -32,7 +32,14 @@ window.addEventListener("load", () => {
     let labelFont = document.getElementsByClassName("label__font");
     let flag = true;
 
-    if(e.key.length !== 1 && e.key !== "Backspace") {
+    console.log(e.key);
+    if(e.key === "ArrowLeft") {
+      --index;
+      return;
+    } else if(e.key === "ArrowRight") {
+      ++index;
+      return;
+    } else if(e.key.length !== 1 && e.key !== "Backspace") {
       return;
     }
     if(e.key === "Backspace") {
