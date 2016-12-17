@@ -35,14 +35,11 @@ window.addEventListener("load", () => {
     console.log(e.key);
     if(e.key === "ArrowLeft") {
       --index;
-      return;
     } else if(e.key === "ArrowRight") {
       ++index;
-      return;
     } else if(e.key.length !== 1 && e.key !== "Backspace") {
       return;
-    }
-    if(e.key === "Backspace") {
+    } else if(e.key === "Backspace") {
       keyStack = keyStack.slice(0, -1);
       --index;
     } else {
@@ -64,8 +61,12 @@ window.addEventListener("load", () => {
         } else {
           labelFont[i].className = "label__font_incorrect label__font";
         }
+
       } else {
         labelFont[i].className = "label__font_normal label__font";
+      }
+      if(i === index) {
+        labelFont[i].className += " label__font_selected";
       }
     }
 
