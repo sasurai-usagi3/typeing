@@ -1,15 +1,27 @@
+let wordGroup = [
+  "link_to",
+  "image_tag",
+  "form_tag",
+  "form_for",
+  "simple_format",
+  "has_one",
+  "has_many", 
+  "belongs_to"
+];
 window.addEventListener("load", () => {
   let label = document.getElementById("label");
-  let str = "hello!";
+  let generate = () => {
+    let r = Math.floor(Math.random() * wordGroup.length);
+    let str = wordGroup[r];
+    str.split("").forEach(x => {
+      let span = document.createElement("span");
+      span.textContent = x;
+      span.className = "label__font_normal label__font";
+      label.appendChild(span);
+    });
+  }
   let keyStack = "";
-
-  str.split("").forEach(x => {
-    let span = document.createElement("span");
-    span.textContent = x;
-    span.className = "label__font_normal label__font";
-
-    label.appendChild(span);
-  });
+  generate();
 
   window.addEventListener("keydown", e => {
     let labelFont = document.getElementsByClassName("label__font");
@@ -40,6 +52,12 @@ window.addEventListener("load", () => {
       } else {
         labelFont[i].className = "label__font_normal label__font";
       }
+    }
+
+    if(flag) {
+      keyStack = "";
+      label.innerHTML = "";
+      generate();
     }
     console.log(flag);
   });
