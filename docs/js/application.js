@@ -14,6 +14,7 @@ window.addEventListener("load", () => {
   let labelTypeNumber = document.getElementById("type-number");
   let typeNumber = 0;
   let s = 0;
+  let index = 0;
   let generate = () => {
     let r = Math.floor(Math.random() * wordGroup.length);
     let str = wordGroup[r];
@@ -36,9 +37,11 @@ window.addEventListener("load", () => {
     }
     if(e.key === "Backspace") {
       keyStack = keyStack.slice(0, -1);
+      --index;
     } else {
       ++typeNumber;
-      keyStack += e.key;
+      keyStack = keyStack.slice(0, index) + e.key + keyStack.slice(index);
+      ++index;
     }
 
     if(keyStack.length !== labelFont.length) {
@@ -62,13 +65,14 @@ window.addEventListener("load", () => {
     if(flag) {
       keyStack = "";
       label.innerHTML = "";
+      index = 0;
       generate();
     }
     console.log(flag);
   });
 
   setInterval(() => {
-    s += 0.01
+    s += 0.01;
     labelTypePerSecond.textContent = typeNumber / s;
     labelTypeNumber.textContent = typeNumber;
   }, 10);

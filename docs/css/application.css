@@ -9,3 +9,7 @@
 .label__font_incorrect {
   color: #f66;
 }
+
+.label__font_selected {
+  border: 1px solid #000;
+}
