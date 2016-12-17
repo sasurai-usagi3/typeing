@@ -10,6 +10,10 @@ let wordGroup = [
 ];
 window.addEventListener("load", () => {
   let label = document.getElementById("label");
+  let labelTypePerSecond = document.getElementById("type-per-second");
+  let labelTypeNumber = document.getElementById("type-number");
+  let typeNumber = 0;
+  let s = 0;
   let generate = () => {
     let r = Math.floor(Math.random() * wordGroup.length);
     let str = wordGroup[r];
@@ -33,6 +37,7 @@ window.addEventListener("load", () => {
     if(e.key === "Backspace") {
       keyStack = keyStack.slice(0, -1);
     } else {
+      ++typeNumber;
       keyStack += e.key;
     }
 
@@ -61,4 +66,10 @@ window.addEventListener("load", () => {
     }
     console.log(flag);
   });
+
+  setInterval(() => {
+    s += 0.01
+    labelTypePerSecond.textContent = typeNumber / s;
+    labelTypeNumber.textContent = typeNumber;
+  }, 10);
 });
